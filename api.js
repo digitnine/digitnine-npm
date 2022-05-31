@@ -9,7 +9,7 @@ module.exports = {
   appsDetails: { 'ver': VERSION },
   key: '',
   secret: '',
-  token : '',
+  token: '',
   cacheToken: false,
   isProduction: false,
 
@@ -32,18 +32,27 @@ module.exports = {
   getToken: async function () {
     data = { 'username': this.key, 'password': this.secret }
 
-    if (this.token != '' && this.token != undefined ) {
+    if (this.token != '' && this.token != undefined) {
       return this.token;
     } else {
-       this.token = await idm.getToken(data);
-      console.log("sdsddsd",this.token);
-      return this.token;
+       return await idm.getToken(data).then( token => {
+        this.token = token ;
+        //console.log("sdsddsd",this.token);
+        return this.token;
+
+      });
     }
   },
 
-  getCurrentUserDetails: function () {
-    idm.token = this.token;
-    return idm.getCurrentUserDetails();
+  getCurrentUserDetails: async function () {
+
+    return await this.getToken().then(
+      () => {
+        idm.authToken = this.token;
+        return idm.getCurrentUserDetails() ;  
+      }
+    );
+
   },
 
   getWallets: function (pagination_data = null) {
