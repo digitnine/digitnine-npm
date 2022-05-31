@@ -2,7 +2,7 @@
   "name": "@digitnine/digitnine",
   "version": "0.0.1",
   "description": "NodeJS package for Digit9 Services",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
     "test": "check-connection"
   },
