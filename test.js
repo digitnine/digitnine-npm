@@ -10,4 +10,8 @@ api.printMsg();
  
 api.getToken();
 
-console.log(api.token);
+// const res =async ()=>{
+//    await api.getToken()
+// }
+
+// res()

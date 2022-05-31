@@ -35,8 +35,8 @@ module.exports = {
     if (this.token != '' && this.token != undefined ) {
       return this.token;
     } else {
-      this.token = await idm.getToken(data);
-      console.log(this.token);
+       this.token = await idm.getToken(data);
+      console.log("sdsddsd",this.token);
       return this.token;
     }
   },
