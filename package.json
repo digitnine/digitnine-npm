@@ -1,0 +1,24 @@
+{
+  "name": "@digitnine/digitnine",
+  "version": "0.0.1",
+  "description": "NodeJS package for Digit9 Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "check-connection"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digitnine/digitnine-npm.git"
+  },
+  "keywords": [
+    "digit9",
+    "digitnine",
+    "api"
+  ],
+  "author": "Sreekuttan M Achari <sreekuttan.mohanan@digitnine.com> (https://digitnine.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digitnine/digitnine-npm/issues"
+  },
+  "homepage": "https://github.com/digitnine/digitnine-npm#readme"
+}
