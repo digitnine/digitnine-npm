@@ -1,10 +1,10 @@
 {
   "name": "@digitnine/digitnine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NodeJS package for Digit9 Services",
   "main": "api.js",
   "scripts": {
-    "test": "check-connection"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
