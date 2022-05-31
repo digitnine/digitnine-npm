@@ -1,3 +1,6 @@
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch'); 
+
 const eps = require('./lib/entrypoints');
 const idm = require('./lib/idm');
 const merchant = require('./lib/merchant');
@@ -32,12 +35,15 @@ module.exports = {
   getToken: async function () {
     data = { 'username': this.key, 'password': this.secret }
 
+    this.token = localStorage.getItem('token');
+
     if (this.token != '' && this.token != undefined) {
       return this.token;
     } else {
-       return await idm.getToken(data).then( token => {
-        this.token = token ;
-        //console.log("sdsddsd",this.token);
+      return await idm.getToken(data).then(token => {
+        this.token = token;
+        console.log("Fetched: ",this.token);
+        localStorage.setItem('token', this.token);
         return this.token;
 
       });
@@ -49,15 +55,19 @@ module.exports = {
     return await this.getToken().then(
       () => {
         idm.authToken = this.token;
-        return idm.getCurrentUserDetails() ;  
+        return idm.getCurrentUserDetails();
       }
     );
 
   },
+  getWallets: async function (pagination_data = null) {
+    return await this.getToken().then(
+      () => {
+        merchant.authToken = this.token;
+        return merchant.getWallets();
+      }
+    );
 
-  getWallets: function (pagination_data = null) {
-    merchant.token = this.token;
-    return merchant.getWallets(pagination_data);
-  }
+  },
 
 };
