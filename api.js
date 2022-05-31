@@ -1,5 +1,7 @@
-var LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch'); 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./node_modules/@digitnine/digitnine/tmp'); 
+}
 
 const eps = require('./lib/entrypoints');
 const idm = require('./lib/idm');
@@ -34,16 +36,18 @@ module.exports = {
 
   getToken: async function () {
     data = { 'username': this.key, 'password': this.secret }
-
     this.token = localStorage.getItem('token');
 
     if (this.token != '' && this.token != undefined) {
+      console.log("Catched: ",this.token);
       return this.token;
     } else {
       return await idm.getToken(data).then(token => {
         this.token = token;
         console.log("Fetched: ",this.token);
-        localStorage.setItem('token', this.token);
+        if(this.cacheToken){
+          localStorage.setItem('token', this.token);
+        }
         return this.token;
 
       });

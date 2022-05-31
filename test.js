@@ -4,6 +4,8 @@ api.key = "sp2";
 api.secret = "password";
 api.isProduction = false;
 
+api.cacheToken = true ;
+
 //api.printMsg();
 
 api.getCurrentUserDetails().then(user => {
