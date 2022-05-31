@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/digitnine/digitnine-npm/issues"
   },
-  "homepage": "https://github.com/digitnine/digitnine-npm#readme"
+  "homepage": "https://github.com/digitnine/digitnine-npm#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "nodejs-base64-converter": "^1.0.5"
+  }
 }
