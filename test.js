@@ -13,8 +13,7 @@ api.getCurrentUserDetails().then(user => {
     return user;
 });
 
-
-api.getWallets().then(wallets => {
-    console.log(wallets);
-    return wallets;
-});
+// api.getWallets().then(wallets => {
+//     console.log(wallets);
+//     return wallets;
+// });

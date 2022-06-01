@@ -1,6 +1,6 @@
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./node_modules/@digitnine/digitnine/tmp'); 
+  localStorage = new LocalStorage('./node_modules/@digitnine/digitnine/tmp');
 }
 
 const eps = require('./lib/entrypoints');
@@ -39,39 +39,38 @@ module.exports = {
     this.token = localStorage.getItem('token');
 
     if (this.token != '' && this.token != undefined) {
-      console.log("Catched: ",this.token);
+      console.log("Catched: ", this.token);
       return this.token;
     } else {
-      return await idm.getToken(data).then(token => {
-        this.token = token;
-        console.log("Fetched: ",this.token);
-        if(this.cacheToken){
-          localStorage.setItem('token', this.token);
-        }
-        return this.token;
+      this.token = await idm.getToken(data)
+      console.log("Fetched: ", this.token);
+      if (this.cacheToken) {
+        localStorage.setItem('token', this.token);
+      }
+      return this.token;
 
-      });
+      ;
     }
   },
 
   getCurrentUserDetails: async function () {
-
-    return await this.getToken().then(
-      () => {
-        idm.authToken = this.token;
-        return idm.getCurrentUserDetails();
-      }
-    );
-
+    await this.getToken();
+    if (this.token !== null) {
+      idm.authToken = this.token;
+      return idm.getCurrentUserDetails()
+    } else {
+      throw new Error('No token');
+    }
   },
-  getWallets: async function (pagination_data = null) {
-    return await this.getToken().then(
-      () => {
-        merchant.authToken = this.token;
-        return merchant.getWallets();
-      }
-    );
 
+  getWallets: async function (pagination_data = null) {
+    await this.getToken();
+    if (this.token !== null) {
+      merchant.authToken = this.token;
+      return merchant.getWallets();
+    } else {
+      throw new Error('No token');
+    }
   },
 
 };
