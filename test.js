@@ -9,17 +9,8 @@ api.cacheToken = true;
 
 //api.printMsg();
 
-// api.getCurrentUserDetails().then(user => {
-//     console.log(user);
-//     return user;
-// });
 
-api.getWallets().then(wallets => {
-    //console.log(wallets);
-    return wallets;
-});
-
-// api.getBeneficiaryById({'id':7}).then(response => {
-//     //console.log(response);
-//     return response;
-// })
+api.getListOfBeneficiary({ page: 1, size: 20 }).then(response => {
+    //console.log(response);
+    return response;
+})
