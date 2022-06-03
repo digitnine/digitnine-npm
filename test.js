@@ -10,7 +10,7 @@ api.cacheToken = true;
 //api.printMsg();
 
 
-api.getListOfBeneficiary({ page: 1, size: 20 }).then(response => {
+api.getListOfBeneficiary({ page: 1, size: 20,ids:[2],sort:['abc','wsc']}).then(response => {
     //console.log(response);
     return response;
 })

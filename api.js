@@ -78,11 +78,11 @@ module.exports = {
     },
 
     //Merchant Service Beneficiary operations Apis---
-    getListOfBeneficiary: async function ({page=0,size=20,type,displayName,iban,status}) {
+    getListOfBeneficiary: async function ({page=0,size=20,type,displayName,iban,status,ids=[],sort=[]}) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            return merchant.getListOfBeneficiary({page,size,type,displayName,iban,status})
+            return merchant.getListOfBeneficiary({page,size,type,displayName,iban,status,ids,sort})
         } else {
             throw new Error('No token');
         }
