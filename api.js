@@ -88,4 +88,16 @@ module.exports = {
             throw new Error('No token');
         }
     },
+
+    //ervice Provider Merchant Profile operations Apis--
+    getMerchantProfileById: async function (id) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+
+            return merchant.getMerchantProfileById(id)
+        } else {
+            throw new Error('No token');
+        }
+    },
 };

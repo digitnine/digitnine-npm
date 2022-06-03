@@ -19,7 +19,7 @@ api.getWallets().then(wallets => {
     return wallets;
 });
 
-// api.getBeneficiaryById({'id':7}).then(response => {
-//     //console.log(response);
-//     return response;
-// })
+api.getMerchantProfileById('7').then(response => {
+    //console.log(response);
+    return response;
+})
