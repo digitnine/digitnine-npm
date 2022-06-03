@@ -14,12 +14,12 @@ api.cacheToken = true;
 //     return user;
 // });
 
-// api.getWallets().then(wallets => {
-//     console.log(wallets);
-//     return wallets;
-// });
+api.getWallets().then(wallets => {
+    console.log(wallets);
+    return wallets;
+});
 
-api.getBeneficiaryId({'id':7}).then(response => {
-    //console.log(response);
-    return response;
-})
+// api.getBeneficiaryById({'id':7}).then(response => {
+//     //console.log(response);
+//     return response;
+// })

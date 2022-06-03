@@ -63,26 +63,29 @@ module.exports = {
         }
     },
 
+    //-----Merchant Services-----//
+
+    //Merchant Service Wallet operations Apis----
     getWallets: async function (pagination_data = null) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            
+
             return merchant.getWallets();
         } else {
             throw new Error('No token');
         }
     },
 
-    getBeneficiaryId: async function (id) {
+    //Merchant Service Beneficiary operations Apis---
+    getBeneficiaryById: async function (id) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-           
+
             return merchant.getBeneficiaryId(id)
         } else {
             throw new Error('No token');
         }
     },
-
 };
