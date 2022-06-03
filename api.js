@@ -78,11 +78,11 @@ module.exports = {
     },
 
     //Merchant Service Beneficiary operations Apis---
-    getListOfBeneficiary: async function ({page=0,size=20,type,displayName,iban,status,ids=[],sort=[]}) {
+    getListOfBeneficiary: async function ({ page = 0, size = 20, type, displayName, iban, status, ids = [], sort = [] }) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            return merchant.getListOfBeneficiary({page,size,type,displayName,iban,status,ids,sort})
+            return merchant.getListOfBeneficiary({ page, size, type, displayName, iban, status, ids, sort })
         } else {
             throw new Error('No token');
         }
@@ -93,6 +93,26 @@ module.exports = {
             merchant.authToken = this.token;
 
             return merchant.getBeneficiaryId(id)
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Merchant Service - Service Providers operations Apis--
+    getListOfBanksByServiceProviderId: async function ({ serviceProviderId, ctryCode, ccyCode, page = 0, size = 20, sort = [] }) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfBanksByServiceProviderId({ serviceProviderId, ctryCode, ccyCode, page, size, sort })
+        } else {
+            throw new Error('No token');
+        }
+    },
+    getListOfServiceProviders: async function ({ ctryCode, ccyCode, page = 0, size = 20, sort = [] }) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfServiceProviders({ ctryCode, ccyCode, page, size, sort })
         } else {
             throw new Error('No token');
         }
