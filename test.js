@@ -15,7 +15,7 @@ api.cacheToken = true;
 // });
 
 api.getWallets().then(wallets => {
-    console.log(wallets);
+    //console.log(wallets);
     return wallets;
 });
 
