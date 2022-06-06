@@ -65,24 +65,29 @@ module.exports = {
 
     //-----Merchant Services-----//
 
-    //Merchant Service Wallet operations Apis----
-    getWallets: async function (pagination_data = null) {
-        await this.getToken();
-        if (this.token !== null) {
-            merchant.authToken = this.token;
-
-            return merchant.getWallets();
-        } else {
-            throw new Error('No token');
-        }
-    },
-
     //Merchant Service Beneficiary operations Apis---
-    getListOfBeneficiary: async function ({ page = 0, size = 20, type, displayName, iban, status, ids = [], sort = [] }) {
+    getListOfBeneficiary: async function ({
+        page = 0,
+        size = 20,
+        type,
+        displayName,
+        iban,
+        status,
+        ids = [],
+        sort = [] }) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            return merchant.getListOfBeneficiary({ page, size, type, displayName, iban, status, ids, sort })
+            return merchant.getListOfBeneficiary({
+                page,
+                size,
+                type,
+                displayName,
+                iban,
+                status,
+                ids,
+                sort
+            })
         } else {
             throw new Error('No token');
         }
@@ -97,13 +102,53 @@ module.exports = {
             throw new Error('No token');
         }
     },
-
-    //Merchant Service - Service Providers operations Apis--
-    getListOfBanksByServiceProviderId: async function ({ serviceProviderId, ctryCode, ccyCode, page = 0, size = 20, sort = [] }) {
+    createMerchantBenficiaries: async function ({ type,
+        accountTypeCode,
+        companyName,
+        firstName,
+        middleName,
+        lastName,
+        residentCountryCode,
+        bankInfo = {
+            branchCode, iban,
+            bic, accountHolderName,
+            accountCountryCode, accountCurrencyCode
+        } }) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            return merchant.getListOfBanksByServiceProviderId({ serviceProviderId, ctryCode, ccyCode, page, size, sort })
+
+            return merchant.createMerchantBenficiaries({
+                type, accountTypeCode,
+                companyName, firstName,
+                middleName, lastName,
+                residentCountryCode, bankInfo
+            })
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+
+    //Merchant Service - Service Providers operations Apis--
+    getListOfBanksByServiceProviderId: async function ({
+        serviceProviderId,
+        ctryCode,
+        ccyCode,
+        page = 0,
+        size = 20,
+        sort = [] }) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfBanksByServiceProviderId({
+                serviceProviderId,
+                ctryCode,
+                ccyCode,
+                page,
+                size,
+                sort
+            })
         } else {
             throw new Error('No token');
         }
@@ -112,9 +157,84 @@ module.exports = {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
-            return merchant.getListOfServiceProviders({ ctryCode, ccyCode, page, size, sort })
+            return merchant.getListOfServiceProviders({
+                ctryCode,
+                ccyCode,
+                page,
+                size,
+                sort
+            })
         } else {
             throw new Error('No token');
         }
     },
+
+    //Merchant Service bank account operations
+    createBankAccountOfMerchantServiceWallets: async function ({
+        accountHolderName,
+        bic,
+        iban,
+        swift,
+        bankAddress,
+        bankCountryCode,
+    }) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+
+            return merchant.createBankAccountOfMerchantServiceWallets(
+                {
+                    accountHolderName,
+                    bic,
+                    iban,
+                    swift,
+                    bankAddress,
+                    bankCountryCode,
+
+                })
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Wallet operations
+    getTheListOfServiceProviderWallets: async function ({ page = 0, size = 20, sort = [] }) {
+        await this.getToken();
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getTheListOfServiceProviderWallets({
+                page,
+                size,
+                sort
+            })
+        } else {
+            throw new Error('No token');
+        }
+
+    },
+
+    createWalletForServiceProvider: async function ({
+        currencyCode,
+        countryCode,
+        bankCode,
+        bankAccountId,
+        description,
+    }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+
+            return merchant.createWalletForServiceProvider(
+                {
+                    currencyCode,
+                    countryCode,
+                    bankCode,
+                    bankAccountId,
+                    description,
+                })
+        } else {
+            throw new Error('No token');
+        }
+    }
+
+
 };

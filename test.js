@@ -10,7 +10,10 @@ api.cacheToken = true;
 //api.printMsg();
 
 
-// api.getListOfServiceProviders({ ctryCode:12, ccyCode: 2, sort: ['abc', 'abc'] }).then(response => {
-//     //console.log(response);
-//     return response;
-// })
+api.getTheListOfServiceProviderWallets({
+    page:0,size:20
+    
+}).then(response => {
+    //console.log(response);
+    return response;
+})
