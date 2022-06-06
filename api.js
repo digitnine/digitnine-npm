@@ -234,7 +234,342 @@ module.exports = {
         } else {
             throw new Error('No token');
         }
+    },
+
+    //Service Provider Credit Scoring Operations apis--
+    getListOfServiceProviderCreditScoringAssessments: async function () {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfServiceProviderCreditScoringAssessments()
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Merchant Wallet operations
+    getTheMerchantWallet: async function (id) {
+        if (this.token !== null) {
+            if (id !== null && id !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.getTheMerchantWallet(id)
+            } else {
+                throw new Error('Id is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    getTheListOfMerchantWallets: async function ({ page = 0, size = 20, merchantName, sort = [] }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getTheListOfMerchantWallets({ page, size, merchantName, sort })
+        } else {
+            throw new Error('No token');
+        }
+    },
+    updateMerchantwallet: async function (id) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.updateMerchantwallet(id)
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Merchant Beneficiary
+    getMerchantBeneficiaryById: async function (id) {
+        if (this.token !== null) {
+            if (id !== null && id !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.getMerchantBeneficiaryById(id)
+            } else {
+                throw new Error('Id is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    getListOfMerchantBeneficiaries: async function ({
+        page = 0,
+        size = 20,
+        type,
+        displayName,
+        iban,
+        status,
+        ids,
+        sort
+    }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfMerchantBeneficiaries({
+                page,
+                size,
+                type,
+                displayName,
+                iban,
+                status,
+                ids,
+                sort
+            })
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Rates operations
+    getCurrentRate: async function ({
+        fromCurrency,
+        toCurrency,
+        amount }) {
+        if (this.token !== null) {
+            if ((fromCurrency && toCurrency !== null) && (fromCurrency && toCurrency !== undefined)) {
+                merchant.authToken = this.token;
+                return merchant.getCurrentRate({
+                    fromCurrency,
+                    toCurrency,
+                    amount
+                })
+            } else {
+                throw new Error('Required fields canot be empty')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Bank Account operations
+    createBankAcctForServiceProvider: async function ({
+        accountHolderName,
+        bic,
+        iban,
+        swift,
+        bankAddress,
+        bankCountryCode
+
+    }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.createBankAcctForServiceProvider({
+                accountHolderName,
+                bic,
+                iban,
+                swift,
+                bankAddress,
+                bankCountryCode
+            })
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Merchant Service Wallet
+    getListOfMerchanWallets: async function ({
+        page = 0,
+        size = 20,
+        query,
+        merchantId,
+        serviceProviderId,
+        status,
+        bankAccountId,
+        currencyCode,
+        countryCode,
+        bankCode,
+        sort = []
+    }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfMerchanWallets({
+                page,
+                size,
+                query,
+                merchantId,
+                serviceProviderId,
+                status,
+                bankAccountId,
+                currencyCode,
+                countryCode,
+                bankCode,
+                sort
+            })
+        } else {
+            throw new Error('No token');
+        }
+    },
+    getMerchantWalletById: async function (id) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getMerchantWalletById(id)
+        } else {
+            throw new Error('No token');
+        }
+    },
+    createMerchantWallets: async function ({
+        walletId,
+        alias,
+        countryCode,
+        currencyCode,
+        bankCode,
+        serviceProviderId,
+        bankAccountId
+    }) {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.createMerchantWallets({
+                walletId,
+                alias,
+                countryCode,
+                currencyCode,
+                bankCode,
+                serviceProviderId,
+                bankAccountId
+            })
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Merchant Profile documents operations
+    getListOfDocsCurrentMerchantProfile: async function (merchantProfileID) {
+        if (this.token !== null) {
+            if (merchantProfileID !== null && merchantProfileID !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.getListOfDocsCurrentMerchantProfile(merchantProfileID)
+            } else {
+                throw new Error('merchantProfileID is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    createMechantProfileDoc: async function ({
+        merchantProfileID,
+        checkType,
+        checkId,
+        fileName
+    }) {
+        if (this.token !== null) {
+            if (merchantProfileID !== null && merchantProfileID !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.createMechantProfileDoc({
+                    merchantProfileID,
+                    checkType,
+                    checkId,
+                    fileName
+                })
+            } else {
+                throw new Error('merchantProfileID is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Executive Documents operations
+    getListOFServiceProviderExecutiveDocs: async function () {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOFServiceProviderExecutiveDocs()
+
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Risk Scoring
+    getListOFServiceProviderRiskScoringAssesments: async function () {
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOFServiceProviderRiskScoringAssesments()
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider - Merchant Profile comments
+    deleteMerchantProfileById: async function ({ merchantProfileID, commentID }) {
+        if (this.token !== null) {
+            if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
+                merchant.authToken = this.token;
+                return merchant.deleteMerchantProfileById({
+                    merchantProfileID,
+                    commentID
+                })
+            } else {
+                throw new Error('Required fields are empty')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    getListOfCommentsCurrentMerchantProfile: async function (merchantProfileID) {
+        if (this.token !== null) {
+            if (merchantProfileID !== null && merchantProfileID !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.getListOfCommentsCurrentMerchantProfile(merchantProfileID)
+            } else {
+                throw new Error('merchantProfileID is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    updateMerchantProfileCommentByID: async function ({ merchantProfileID, commentID, content = {} }) {
+        if (this.token !== null) {
+            if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
+                merchant.authToken = this.token;
+                return merchant.updateMerchantProfileCommentByID({
+                    merchantProfileID,
+                    commentID,
+                    content
+                })
+            } else {
+                throw new Error('Required fields are empty')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+    createMerchantProfileComment: async function ({
+        merchantProfileID,
+        checkType,
+        checkId,
+        fileName }) {
+        if (this.token !== null) {
+            if (merchantProfileID !== null && merchantProfileID !== undefined) {
+                merchant.authToken = this.token;
+                return merchant.createMerchantProfileComment({
+                    merchantProfileID,
+                    checkType,
+                    checkId,
+                    fileName
+                })
+            } else {
+                throw new Error('merchantProfileID is required')
+            }
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider KYC operations
+    getListOfServiceProviderKYCs:async function(){
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfServiceProviderKYCs()
+
+        } else {
+            throw new Error('No token');
+        }
+    },
+
+    //Service Provider Fee
+    getListOfFeesOfServiceProvider:async function(){
+        if (this.token !== null) {
+            merchant.authToken = this.token;
+            return merchant.getListOfFeesOfServiceProvider()
+
+        } else {
+            throw new Error('No token');
+        }
     }
-
-
 };

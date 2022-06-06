@@ -10,9 +10,13 @@ api.cacheToken = true;
 //api.printMsg();
 
 
-api.getTheListOfServiceProviderWallets({
-    page:0,size:20
-    
+api.updateMerchantProfileCommentByID({
+    merchantProfileID: 1,
+    commentID: 2,
+    content: {
+        'content': 'string'
+    }
+
 }).then(response => {
     //console.log(response);
     return response;
