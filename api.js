@@ -93,13 +93,17 @@ module.exports = {
         }
     },
     getBeneficiaryById: async function (id) {
-        await this.getToken();
-        if (this.token !== null) {
-            merchant.authToken = this.token;
+        if (id !== null && id !== undefined) {
+            await this.getToken();
+            if (this.token !== null) {
+                merchant.authToken = this.token;
 
-            return merchant.getBeneficiaryId(id)
+                return merchant.getBeneficiaryId(id)
+            } else {
+                throw new Error('No token');
+            }
         } else {
-            throw new Error('No token');
+            throw new Error("Id requried");
         }
     },
     createMerchantBenficiaries: async function ({ type,
@@ -138,34 +142,52 @@ module.exports = {
         page = 0,
         size = 20,
         sort = [] }) {
-        await this.getToken();
-        if (this.token !== null) {
-            merchant.authToken = this.token;
-            return merchant.getListOfBanksByServiceProviderId({
-                serviceProviderId,
-                ctryCode,
-                ccyCode,
-                page,
-                size,
-                sort
-            })
+        if (
+            (serviceProviderId && ctryCode && ccyCode) !==
+            null &&
+            (serviceProviderId && ctryCode && ccyCode) !==
+            undefined
+        ) {
+            await this.getToken();
+            if (this.token !== null) {
+                merchant.authToken = this.token;
+                return merchant.getListOfBanksByServiceProviderId({
+                    serviceProviderId,
+                    ctryCode,
+                    ccyCode,
+                    page,
+                    size,
+                    sort
+                })
+            } else {
+                throw new Error('No token');
+            }
         } else {
-            throw new Error('No token');
+            throw new Error("required field canot be empty");
         }
     },
     getListOfServiceProviders: async function ({ ctryCode, ccyCode, page = 0, size = 20, sort = [] }) {
-        await this.getToken();
-        if (this.token !== null) {
-            merchant.authToken = this.token;
-            return merchant.getListOfServiceProviders({
-                ctryCode,
-                ccyCode,
-                page,
-                size,
-                sort
-            })
-        } else {
-            throw new Error('No token');
+        if (
+            (ctryCode && ccyCode) !== null &&
+            (ctryCode && ccyCode) !== undefined
+        ) {
+            await this.getToken();
+            if (this.token !== null) {
+                merchant.authToken = this.token;
+                return merchant.getListOfServiceProviders({
+                    ctryCode,
+                    ccyCode,
+                    page,
+                    size,
+                    sort
+                })
+            }
+            else {
+                throw new Error('No token');
+            }
+        }
+        else {
+            throw new Error("required field canot be empty");
         }
     },
 
@@ -552,7 +574,7 @@ module.exports = {
     },
 
     //Service Provider KYC operations
-    getListOfServiceProviderKYCs:async function(){
+    getListOfServiceProviderKYCs: async function () {
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfServiceProviderKYCs()
@@ -563,7 +585,7 @@ module.exports = {
     },
 
     //Service Provider Fee
-    getListOfFeesOfServiceProvider:async function(){
+    getListOfFeesOfServiceProvider: async function () {
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfFeesOfServiceProvider()
