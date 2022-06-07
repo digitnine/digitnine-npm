@@ -98,7 +98,7 @@ module.exports = {
             if (this.token !== null) {
                 merchant.authToken = this.token;
 
-                return merchant.getBeneficiaryId(id)
+                return merchant.getBeneficiaryById(id)
             } else {
                 throw new Error('No token');
             }
