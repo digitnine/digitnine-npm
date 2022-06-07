@@ -1,5 +1,5 @@
-const api = require('./api');
-const merchant = require('./lib/merchant');
+const api = require("./api");
+const merchant = require("./lib/merchant");
 
 api.key = "sp2";
 api.secret = "password";
