@@ -449,10 +449,7 @@ module.exports = {
             throw new Error('No token');
         }
     },
-        } else {
-            throw new Error('No token');
-        }
-    },
+
 
     //Service Provider - Merchant Profile comments
     deleteMerchantProfileById: async function ({ merchantProfileID, commentID }) {
@@ -498,12 +495,6 @@ module.exports = {
             throw new Error('No token');
         }
     },
-    createMerchantProfileComment: async function ({
-        merchantProfileID,
-        checkType,
-        checkId,
-        fileName }) {
-        if (this.token !== null) {
 
     //Service Provider Merchant Profile documents operations
     getListOfDocsCurrentMerchantProfile: async function (merchantProfileID) {
@@ -648,7 +639,7 @@ module.exports = {
         } else {
             throw new Error('No token');
         }
-    }
+    },
 
     //Service Provider Merchant Profile operations Apis--
     getMerchantProfileById: async function (id) {
@@ -662,128 +653,128 @@ module.exports = {
         }
     },
     //List Merchant profile under current service provider--
-    listMerchantProfiles: async function ({page = 0,size=20,merchantName,sort=[]}) {
+    listMerchantProfiles: async function ({ page = 0, size = 20, merchantName, sort = [] }) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
 
-            return merchant.listMerchantProfiles({page,size,merchantName,sort});
+            return merchant.listMerchantProfilesOfCurrentServiceProvider({ page, size, merchantName, sort });
         } else {
             throw new Error('No token');
         }
     },
     //Update Merchant Profile operations Apis--
-    updateMerchantProfileById: async function (id ,body) {
-        if(id!==null && id!==undefined){
-            if(body!==null && body!==undefined){
+    updateMerchantProfileById: async function (id, body) {
+        if (id !== null && id !== undefined) {
+            if (body !== null && body !== undefined) {
                 await this.getToken();
                 if (this.token !== null) {
                     merchant.authToken = this.token;
 
-                    return merchant.updateMerchantProfileById(id,body)
+                    return merchant.updateMerchantProfileById(id, body)
                 } else {
                     throw new Error('No token');
                 }
             }
-            else{
+            else {
                 throw new Error('body is required');
             }
         }
-        else{
+        else {
             throw new Error('id is required');
         }
     },
 
     //List service provider--
-    listServiceProviders: async function ({countryCode, currencyCode, page=0, size=20, sort=[]}) {
-        if(countryCode!==null && countryCode!==undefined && countryCode!==""){
-            if(currencyCode!==null && currencyCode!==undefined && currencyCode!==""){
+    listServiceProviders: async function ({ countryCode, currencyCode, page = 0, size = 20, sort = [] }) {
+        if (countryCode !== null && countryCode !== undefined && countryCode !== "") {
+            if (currencyCode !== null && currencyCode !== undefined && currencyCode !== "") {
                 await this.getToken();
                 if (this.token !== null) {
                     merchant.authToken = this.token;
 
-                    return merchant.listServiceProviders({countryCode,currencyCode,page,size,sort});
+                    return merchant.getListServiceProviders({ countryCode, currencyCode, page, size, sort });
                 } else {
                     throw new Error('No token');
                 }
             }
-            else{
+            else {
                 throw new Error('currencyCode is required');
             }
-        }else{
+        } else {
             throw new Error('countryCode is required');
         }
     },
 
-    //List of banks associated to a service provider id--
-    listBanksOfServiceProvider: async function ({serviceProviderId, countryCode, currencyCode, page=0, size=20, sort=[]}) {
-        if(serviceProviderId!==null && serviceProviderId!==undefined && serviceProviderId!==""){
-            if(countryCode!==null && countryCode!==undefined && countryCode!==""){
-                if(currencyCode!==null && currencyCode!==undefined && currencyCode!==""){
+    //BankBasic Dto Api--
+    listBanksOfServiceProvider: async function ({ serviceProviderId, countryCode, currencyCode, page = 0, size = 20, sort = [] }) {
+        if (serviceProviderId !== null && serviceProviderId !== undefined && serviceProviderId !== "") {
+            if (countryCode !== null && countryCode !== undefined && countryCode !== "") {
+                if (currencyCode !== null && currencyCode !== undefined && currencyCode !== "") {
                     await this.getToken();
                     if (this.token !== null) {
                         merchant.authToken = this.token;
 
-                        return merchant.listBanksOfServiceProvider({serviceProviderId,countryCode,currencyCode,page,size,sort});
+                        return merchant.listBanksOfServiceProvider({ serviceProviderId, countryCode, currencyCode, page, size, sort });
                     } else {
                         throw new Error('No token');
                     }
                 }
-                else{
+                else {
                     throw new Error('currencyCode is required');
                 }
-            }else{
+            } else {
                 throw new Error('countryCode is required');
             }
         }
-        else{
+        else {
             throw new Error('serviceProviderId is required');
         }
     },
 
     //get cureent rate dto--
-    getCurrentRate: async function ({fromCurrency, toCurrency, amount=1}) {
-        if(fromCurrency!==null && fromCurrency!==undefined && fromCurrency!==""){
-            if(toCurrency!==null && toCurrency!==undefined && toCurrency!==""){
+    getCurrentRate: async function ({ fromCurrency, toCurrency, amount = 1 }) {
+        if (fromCurrency !== null && fromCurrency !== undefined && fromCurrency !== "") {
+            if (toCurrency !== null && toCurrency !== undefined && toCurrency !== "") {
                 await this.getToken();
                 if (this.token !== null) {
                     merchant.authToken = this.token;
 
-                    return merchant.getCurrentRate({fromCurrency,toCurrency,amount});
+                    return merchant.getCurrentRate({ fromCurrency, toCurrency, amount });
                 } else {
                     throw new Error('No token');
                 }
             }
-            else{
+            else {
                 throw new Error('toCurrency is required');
             }
-        }else{
+        } else {
             throw new Error('fromCurrency is required');
         }
     },
 
     //list executive documents dto--
-    listExecutiveDocuments: async function () {
+    getListServiceProviderExecutiveDocuments: async function () {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
 
-            return merchant.listExecutiveDocuments();
+            return merchant.getListServiceProviderExecutiveDocuments();
         } else {
             throw new Error('No token');
-        } 
+        }
     },
 
     //list fees dto of service provider--
-    listFees: async function () {
+    getListFeesOfServiceProvider: async function () {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
 
-            return merchant.listFees();
+            return merchant.getListFeesOfServiceProvider();
         } else {
             throw new Error('No token');
-        } 
+        }
     },
 
     //list KYC dto of service provider--
@@ -795,19 +786,19 @@ module.exports = {
             return merchant.listServiceProviderKYC();
         } else {
             throw new Error('No token');
-        } 
+        }
     },
 
     //list merchant wallets dto--
-    listMerchantWallets: async function ({merchantName,page,size,sort=[]}) {
+    listMerchantWallets: async function ({ merchantName, page, size, sort = [] }) {
         await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
 
-            return merchant.listMerchantWallets({merchantName,page,size,sort});
+            return merchant.listMerchantWallets({ merchantName, page, size, sort });
         } else {
             throw new Error('No token');
-        } 
+        }
     },
 
     //list service provider risk scoring assesments--
@@ -819,6 +810,6 @@ module.exports = {
             return merchant.listRiskScoringAssesments();
         } else {
             throw new Error('No token');
-        } 
+        }
     },
 };
