@@ -1,6 +1,6 @@
 {
   "name": "@digitnine/digitnine",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "NodeJS package for Digit9 Services",
   "main": "api.js",
   "scripts": {
