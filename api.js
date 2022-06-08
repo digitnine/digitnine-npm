@@ -242,6 +242,7 @@ module.exports = {
         bankAccountId,
         description,
     }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
 
@@ -260,6 +261,7 @@ module.exports = {
 
     //Service Provider Credit Scoring Operations apis--
     getListOfServiceProviderCreditScoringAssessments: async function () {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfServiceProviderCreditScoringAssessments()
@@ -270,6 +272,7 @@ module.exports = {
 
     //Service Provider Merchant Wallet operations
     getTheMerchantWallet: async function (id) {
+        await this.getToken();
         if (this.token !== null) {
             if (id !== null && id !== undefined) {
                 merchant.authToken = this.token;
@@ -282,6 +285,7 @@ module.exports = {
         }
     },
     getTheListOfMerchantWallets: async function ({ page = 0, size = 20, merchantName, sort = [] }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getTheListOfMerchantWallets({ page, size, merchantName, sort })
@@ -290,6 +294,7 @@ module.exports = {
         }
     },
     updateMerchantwallet: async function (id) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.updateMerchantwallet(id)
@@ -300,6 +305,7 @@ module.exports = {
 
     //Service Provider Merchant Beneficiary
     getMerchantBeneficiaryById: async function (id) {
+        await this.getToken();
         if (this.token !== null) {
             if (id !== null && id !== undefined) {
                 merchant.authToken = this.token;
@@ -321,6 +327,7 @@ module.exports = {
         ids,
         sort
     }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfMerchantBeneficiaries({
@@ -343,6 +350,7 @@ module.exports = {
         fromCurrency,
         toCurrency,
         amount }) {
+            await this.getToken();
         if (this.token !== null) {
             if ((fromCurrency && toCurrency !== null) && (fromCurrency && toCurrency !== undefined)) {
                 merchant.authToken = this.token;
@@ -369,6 +377,7 @@ module.exports = {
         bankCountryCode
 
     }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.createBankAcctForServiceProvider({
@@ -398,6 +407,7 @@ module.exports = {
         bankCode,
         sort = []
     }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfMerchanWallets({
@@ -418,6 +428,7 @@ module.exports = {
         }
     },
     getMerchantWalletById: async function (id) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getMerchantWalletById(id)
@@ -434,6 +445,7 @@ module.exports = {
         serviceProviderId,
         bankAccountId
     }) {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.createMerchantWallets({
@@ -453,6 +465,7 @@ module.exports = {
 
     //Service Provider - Merchant Profile comments
     deleteMerchantProfileById: async function ({ merchantProfileID, commentID }) {
+        await this.getToken();
         if (this.token !== null) {
             if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
                 merchant.authToken = this.token;
@@ -468,6 +481,7 @@ module.exports = {
         }
     },
     getListOfCommentsCurrentMerchantProfile: async function (merchantProfileID) {
+        await this.getToken();
         if (this.token !== null) {
             if (merchantProfileID !== null && merchantProfileID !== undefined) {
                 merchant.authToken = this.token;
@@ -480,6 +494,7 @@ module.exports = {
         }
     },
     updateMerchantProfileCommentByID: async function ({ merchantProfileID, commentID, content = {} }) {
+        await this.getToken();
         if (this.token !== null) {
             if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
                 merchant.authToken = this.token;
@@ -498,6 +513,7 @@ module.exports = {
 
     //Service Provider Merchant Profile documents operations
     getListOfDocsCurrentMerchantProfile: async function (merchantProfileID) {
+        await this.getToken();
         if (this.token !== null) {
             if (merchantProfileID !== null && merchantProfileID !== undefined) {
                 merchant.authToken = this.token;
@@ -515,6 +531,7 @@ module.exports = {
         checkId,
         fileName
     }) {
+        await this.getToken();
         if (this.token !== null) {
             if (merchantProfileID !== null && merchantProfileID !== undefined) {
                 merchant.authToken = this.token;
@@ -534,6 +551,7 @@ module.exports = {
 
     //Service Provider Executive Documents operations
     getListOFServiceProviderExecutiveDocs: async function () {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOFServiceProviderExecutiveDocs()
@@ -545,6 +563,7 @@ module.exports = {
 
     //Service Provider Risk Scoring
     getListOFServiceProviderRiskScoringAssesments: async function () {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOFServiceProviderRiskScoringAssesments()
@@ -555,6 +574,7 @@ module.exports = {
 
     //Service Provider - Merchant Profile comments
     deleteMerchantProfileById: async function ({ merchantProfileID, commentID }) {
+        await this.getToken();
         if (this.token !== null) {
             if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
                 merchant.authToken = this.token;
@@ -570,6 +590,7 @@ module.exports = {
         }
     },
     getListOfCommentsCurrentMerchantProfile: async function (merchantProfileID) {
+        await this.getToken();
         if (this.token !== null) {
             if (merchantProfileID !== null && merchantProfileID !== undefined) {
                 merchant.authToken = this.token;
@@ -582,6 +603,7 @@ module.exports = {
         }
     },
     updateMerchantProfileCommentByID: async function ({ merchantProfileID, commentID, content = {} }) {
+        await this.getToken();
         if (this.token !== null) {
             if ((merchantProfileID !== null && commentID !== null) && (merchantProfileID !== undefined && commentID !== undefined)) {
                 merchant.authToken = this.token;
@@ -602,6 +624,7 @@ module.exports = {
         checkType,
         checkId,
         fileName }) {
+            await this.getToken();
         if (this.token !== null) {
             if (merchantProfileID !== null && merchantProfileID !== undefined) {
                 merchant.authToken = this.token;
@@ -621,6 +644,7 @@ module.exports = {
 
     //Service Provider KYC operations
     getListOfServiceProviderKYCs: async function () {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfServiceProviderKYCs()
@@ -632,6 +656,7 @@ module.exports = {
 
     //Service Provider Fee
     getListOfFeesOfServiceProvider: async function () {
+        await this.getToken();
         if (this.token !== null) {
             merchant.authToken = this.token;
             return merchant.getListOfFeesOfServiceProvider()
